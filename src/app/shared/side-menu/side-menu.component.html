@@ -5,6 +5,8 @@
 
 <ul class="list-group">
     <li *ngFor="let item of templateMenu"
+        [routerLink]="[item.ruta]"
+        routerLinkActive="active"
         class="list-group-item">{{ item.texto }} </li>
     
 </ul>
@@ -14,6 +16,8 @@
 
 <ul class="list-group">
     <li *ngFor="let item of reactiveMenu"
+        [routerLink]="[item.ruta]"
+        routerLinkActive="active"
         class="list-group-item">{{ item.texto }} </li>
     
 </ul>
