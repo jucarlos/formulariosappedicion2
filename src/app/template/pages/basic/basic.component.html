@@ -1,1 +1,120 @@
-<p>basic works!</p>
+
+<!-- Buscar: <input type="text" #txtBuscar>
+<button (click)="buscarTexto( txtBuscar.value)"> Guardar </button>
+<hr> -->
+
+
+<h4>Template: Básicos</h4>
+<hr>
+
+<form (submit)="guardarFormulario( )"
+        #miFormulario="ngForm"
+    >
+
+    <!-- Nombre del Producto  -->
+    <div class="row mb-3" >
+        <label class="col-sm-3 col-form-label">
+            Producto
+        </label>
+        <div class="col-sm-9">
+            <input type="text"
+                class="form-control"
+                placeholder="Escribe el nombre del producto"
+                ngModel
+                name="producto"
+                required
+                minlength="3"
+
+                >
+            <span *ngIf="campoNoValido('producto')"
+                class="form-text text-danger">
+                El nombre es requerido y al menos 3 letras
+            </span>
+
+
+        </div>
+
+
+
+    </div>
+
+    <!-- Precio -->
+
+    <div class="row mb-3" >
+        <label class="col-sm-3 col-form-label">
+            Precio
+        </label>
+        <div class="col-sm-9">
+            <input type="number"
+                class="form-control"
+                placeholder="Precio del producto"
+                ngModel
+                name="precio"
+                required
+                >
+
+                <span *ngIf="campoNoValido('precio')"
+                    class="form-text text-danger">
+                    El precio tiene que ser mayor que 0
+                </span>
+        </div>
+
+
+
+    </div>
+
+
+    <!-- Existencias -->
+
+    <div class="row mb-3" >
+        <label class="col-sm-3 col-form-label">
+            Existencias
+        </label>
+        <div class="col-sm-9">
+            <input type="number"
+                class="form-control"
+                placeholder="Existencias del producto"
+                ngModel
+                name="existencias"
+                required
+                >
+
+                <span *ngIf="campoNoValido('existencias')"
+                    class="form-text text-danger">
+                    El precio tiene que ser mayor que 0
+                </span>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- Boton -->
+    <div class="row mb-3">
+        <div class="col">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </div>
+
+</form>
+
+<div class="row">
+<div class="col">
+    <span>Formulario válido:</span>
+    <pre>{{ miFormulario.valid }}</pre>
+
+    <span>Valor del Formulario</span>
+    <pre>{{ miFormulario.value | json }}</pre>
+
+    <span>Pristine</span>
+    <pre>{{ miFormulario.pristine }}</pre>
+
+    <span>Touched</span>
+    <pre>{{ miFormulario.touched }}</pre>
+
+
+    
+</div>
+
+</div>
