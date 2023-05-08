@@ -20,7 +20,7 @@
             <input type="text"
                 class="form-control"
                 placeholder="Escribe el nombre del producto"
-                ngModel
+                [ngModel]="initForm.producto"
                 name="producto"
                 required
                 minlength="3"
@@ -91,9 +91,13 @@
 
 
     <!-- Boton -->
+    <!-- [disabled]="miFormulario.invalid" -->
+
     <div class="row mb-3">
         <div class="col">
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="submit" 
+            
+            class="btn btn-primary float-end">Guardar</button>
         </div>
     </div>
 

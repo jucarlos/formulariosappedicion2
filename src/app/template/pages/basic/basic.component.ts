@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -6,13 +6,24 @@ import { NgForm } from '@angular/forms';
   templateUrl: './basic.component.html',
   styleUrls: ['./basic.component.css']
 })
-export class BasicComponent {
+export class BasicComponent implements OnInit {
+
+  initForm = {
+    producto: 'Bicicleta',
+    precio: 0,
+    existencias: 0
+  }
+
+
+  ngOnInit(): void {
+  }
 
 
   @ViewChild('miFormulario') miFormulario!: NgForm;
-
-
   
+  
+
+
 
   campoNoValido(campo: string) : boolean {
   
@@ -24,10 +35,20 @@ export class BasicComponent {
   guardarFormulario(  ) {
   
 
-    console.log('Guardando formulario...');
-    console.log( this.miFormulario.value );
-
     console.log( this.miFormulario );
+    if ( this.miFormulario.invalid ) {
+      
+      this.miFormulario.control.markAllAsTouched();
+      return;
+    }
+
+
+    console.log('FORMULARIO GUARDADO');
+
+    
+   
+    this.miFormulario.reset(this.initForm);
+    
 
   
   }

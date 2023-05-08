@@ -1,1 +1,91 @@
-<p>dynamic works!</p>
+<h4>Template: Dinámicos</h4>
+<hr>
+
+<form (ngSubmit)="guardar()" #myForm="ngForm" autocomplete="off">
+
+    <!-- Nombre -->
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Nombre</label>
+        <div class="col-sm-9">
+            <input class="form-control"
+                placeholder="Introduce el nombre"
+                >
+
+            <span class="form-text text-danger">
+                El nombre es obligatorio
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- Lenguaje favorito -->
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Agregar</label>
+        <div class="col-sm-9">
+
+
+            <div class="input-group">
+                <input class="form-control"
+                    placeholder="Agregar lenguaje favorito">
+                    
+                    <button class="btn btn-outline-primary" type="button"
+                        >Agregar</button>   
+            </div>
+             
+        </div>
+
+    </div>
+
+
+
+    <!-- Lista de Lenguajes Favoritos  -->
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Favoritos</label>
+        <div class="col-sm-9">
+
+            <div class="input-group">
+                <input class="form-control"
+                    placeholder="Agregar lenguaje favorito">
+                    
+                    <button class="btn btn-outline-danger" type="button"
+                        >Eliminar</button>   
+            </div>
+
+
+            <div class="input-group">
+                <input class="form-control"
+                    placeholder="Agregar lenguaje favorito">
+                    
+                    <button class="btn btn-outline-danger" type="button"
+                        >Eliminar</button>   
+            </div>
+
+
+
+     
+        </div>
+
+
+    </div>
+
+
+    <!-- Botón -->
+
+    <div class="row">
+        <div class="col">
+            <button type="submit" class="btn btn-primary float-end">Guardar</button>
+        </div>
+    </div>
+
+
+</form>
+
+<span>Valid</span>
+<pre>{{ myForm.valid }}</pre>
+
+<span>Value</span>
+<pre>{{ myForm.value |json }}</pre>
+
