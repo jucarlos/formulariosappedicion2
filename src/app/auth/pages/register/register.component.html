@@ -5,7 +5,7 @@
 
 <div class="row">
 
-    <form>
+    <form [formGroup]="miFormulario" (ngSubmit)="guardar()">
 
         <div class="col">
 
@@ -16,9 +16,10 @@
                     <input type="text"
                         class="form-control"
                         placeholder="Introduce tu nombre"
+                        formControlName="nombre"
                     >
 
-                    <small *ngIf="true"
+                    <small *ngIf="campoNoValido('nombre')"
                         class="form-text text-danger">
                         El nombre es obligatorio.
                     </small>
@@ -35,9 +36,10 @@
                     <input type="text"
                         class="form-control"
                         placeholder="Introduce tu identificación"
+                        formControlName="identificador"
                     >
 
-                    <small *ngIf="true"
+                    <small *ngIf="campoNoValido('identificador')"
                         class="form-text text-danger">
                         El identificador es obligatorio y de 9 caracteres
                     </small>
@@ -54,9 +56,10 @@
                     <input type="email"
                         class="form-control"
                         placeholder="Introduce tu email"
+                        formControlName="email"
                     >
 
-                    <small *ngIf="true"
+                    <small *ngIf="campoNoValido('email')"
                         class="form-text text-danger">
                         El email es obligarorio y tiene que ser válido.
                     </small>
@@ -73,6 +76,7 @@
                     <input type="text"
                         class="form-control"
                         placeholder="Introduce tu identificación"
+                        formControlName="userName"
                     >
 
                     <small *ngIf="true"
@@ -94,6 +98,7 @@
                     <input type="password"
                         class="form-control"
                         placeholder="Introduce la password"
+                        formControlName="password1"
                     >
 
                     <small *ngIf="true"
@@ -112,6 +117,7 @@
                     <input type="password"
                         class="form-control"
                         placeholder="Repite la password"
+                        formControlName="password2"
                     >
 
                     <small *ngIf="true"
@@ -136,17 +142,23 @@
                 </div>
             </div>
 
-
-
-
-
-
         </div>
-
-
 
     </form>
 
-
-
 </div>
+
+<span>Formulario Válido</span>
+<pre>{{ miFormulario.valid }}</pre>
+
+<span>Status del Formulario</span>
+<pre>{{ miFormulario.status }}</pre>
+
+<span>Email</span>
+<pre>{{ miFormulario.get('email')?.errors | json }}</pre>
+
+<span>Identificador</span>
+<pre>{{ miFormulario.get('identificador')?.errors | json }}</pre>
+
+<span>Nombre</span>
+<pre>{{ miFormulario.get('nombre')?.errors | json }}</pre>
