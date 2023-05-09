@@ -41,6 +41,13 @@ export class SideMenuComponent {
     }
   ];
 
+  authMenu: MenuItem[] = [
+    {
+      texto: 'Registro',
+      ruta: 'auth/register'
+    }
+  ]
+
 
 
 

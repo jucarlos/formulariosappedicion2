@@ -1,0 +1,152 @@
+
+
+<h4>Registro - Validaciones reactivas </h4>
+<hr>
+
+<div class="row">
+
+    <form>
+
+        <div class="col">
+
+            <!-- Nombre -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Nombre</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                        class="form-control"
+                        placeholder="Introduce tu nombre"
+                    >
+
+                    <small *ngIf="true"
+                        class="form-text text-danger">
+                        El nombre es obligatorio.
+                    </small>
+
+
+                </div>
+            </div>
+
+
+            <!-- identificador -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Identificador</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                        class="form-control"
+                        placeholder="Introduce tu identificación"
+                    >
+
+                    <small *ngIf="true"
+                        class="form-text text-danger">
+                        El identificador es obligatorio y de 9 caracteres
+                    </small>
+
+
+                </div>
+            </div>
+
+
+            <!-- email -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                    <input type="email"
+                        class="form-control"
+                        placeholder="Introduce tu email"
+                    >
+
+                    <small *ngIf="true"
+                        class="form-text text-danger">
+                        El email es obligarorio y tiene que ser válido.
+                    </small>
+
+
+                </div>
+            </div>
+
+
+            <!-- UserName -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Username</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                        class="form-control"
+                        placeholder="Introduce tu identificación"
+                    >
+
+                    <small *ngIf="true"
+                        class="form-text text-danger">
+                        El username es obligatorio y no puede ser carlos
+                    </small>
+
+
+                </div>
+            </div>
+
+
+
+
+            <!-- pass1 -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Password</label>
+                <div class="col-sm-9">
+                    <input type="password"
+                        class="form-control"
+                        placeholder="Introduce la password"
+                    >
+
+                    <small *ngIf="true"
+                        class="form-text text-danger">
+                        La password es obligatoria y al menos 6 caracteres.
+                    </small>
+
+
+                </div>
+            </div>
+
+            <!-- pass2 -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Repite la Password</label>
+                <div class="col-sm-9">
+                    <input type="password"
+                        class="form-control"
+                        placeholder="Repite la password"
+                    >
+
+                    <small *ngIf="true"
+                        class="form-text text-danger">
+                        Las password tienen que ser iguales.
+                    </small>
+
+
+                </div>
+            </div>
+
+
+
+
+            <!-- boton -->
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary float-end">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+
+
+
+    </form>
+
+
+
+</div>
