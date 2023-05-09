@@ -9,10 +9,17 @@
         <div class="col-sm-9">
             <input class="form-control"
                 placeholder="Introduce el nombre"
+                name="nombre"
+                [ngModel]="persona.nombre"
+                required
+                minlength="3"
                 >
 
-            <span class="form-text text-danger">
-                El nombre es obligatorio
+            <span *ngIf="myForm.controls['nombre']?.invalid 
+                        && myForm.controls['nombre'].touched"
+            
+                class="form-text text-danger">
+                El nombre es obligatorio y al menos 3 letras
             </span>
 
         </div>
@@ -28,9 +35,14 @@
 
             <div class="input-group">
                 <input class="form-control"
-                    placeholder="Agregar lenguaje favorito">
+                    placeholder="Agregar lenguaje favorito"
+                    name="nuevoFavorito"
+                    [(ngModel)]="nuevoFavorito"
+                    (keyup.enter)="agregarFavorito()"
+                    >
                     
-                    <button class="btn btn-outline-primary" type="button"
+                <button (click)="agregarFavorito()"
+                    class="btn btn-outline-primary" type="button"
                         >Agregar</button>   
             </div>
              
@@ -46,22 +58,25 @@
         <label class="col-sm-3 col-form-label">Favoritos</label>
         <div class="col-sm-9">
 
-            <div class="input-group">
+            
+            
+            <div *ngFor="let favorito of persona.favoritos; let i = index"
+                class="input-group">
                 <input class="form-control"
-                    placeholder="Agregar lenguaje favorito">
+                    placeholder="Agregar lenguaje favorito"
+                    [(ngModel)]="favorito.nombre"
+                    name="favorito{{i}}"
+                    required
+                    >
                     
-                    <button class="btn btn-outline-danger" type="button"
+                    <button 
+                        (click)="eliminarFavorito( i )"
+                        class="btn btn-outline-danger" type="button"
                         >Eliminar</button>   
             </div>
 
 
-            <div class="input-group">
-                <input class="form-control"
-                    placeholder="Agregar lenguaje favorito">
-                    
-                    <button class="btn btn-outline-danger" type="button"
-                        >Eliminar</button>   
-            </div>
+           
 
 
 
@@ -89,3 +104,8 @@
 <span>Value</span>
 <pre>{{ myForm.value |json }}</pre>
 
+
+<!-- 
+<span>Errores del Nombre</span>
+<pre>{{ myForm.controls['nombre']?.errors | json  }}</pre>
+ -->
