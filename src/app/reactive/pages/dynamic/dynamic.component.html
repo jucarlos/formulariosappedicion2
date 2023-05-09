@@ -32,11 +32,12 @@
             <div class="input-group">
                 <input class="form-control"
                     placeholder="Agregar lenguaje favorito"
-            
+                    [formControl]="nuevoFavorito"
+
                  
                     >
                     
-                <button
+                <button (click)="agregarFavorito()"
                     class="btn btn-outline-primary" type="button"
                         >Agregar</button>   
             </div>
