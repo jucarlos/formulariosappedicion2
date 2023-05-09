@@ -1,1 +1,92 @@
-<p>dynamic works!</p>
+<h4>Reactive: Dinámicos</h4>
+<hr>
+
+<form  [formGroup]="miFormulario"   (ngSubmit)="guardar()" autocomplete="off">
+
+    <!-- Nombre -->
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Nombre</label>
+        <div class="col-sm-9">
+            <input class="form-control"
+                placeholder="Introduce el nombre"
+                formControlName="nombre"
+                >
+
+            <span 
+                *ngIf="campoNoValido('nombre')"
+                class="form-text text-danger">
+                El nombre es obligatorio y al menos 3 letras
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- Lenguaje favorito -->
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Agregar</label>
+        <div class="col-sm-9">
+
+
+            <div class="input-group">
+                <input class="form-control"
+                    placeholder="Agregar lenguaje favorito"
+            
+                 
+                    >
+                    
+                <button
+                    class="btn btn-outline-primary" type="button"
+                        >Agregar</button>   
+            </div>
+             
+        </div>
+
+    </div>
+
+
+
+    <!-- Lista de Lenguajes Favoritos  -->
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Favoritos</label>
+        <div class="col-sm-9" formArrayName="favoritos">
+
+            
+            
+            <div *ngFor="let favorito of favoritosArray.controls; let i = index"
+                class="input-group">
+                <input class="form-control"   
+                        [formControlName]="i"
+                        >
+                    
+                    <button 
+                       (click)="eliminar(i)"
+                        class="btn btn-outline-danger" type="button"
+                        >Eliminar</button>   
+            </div>
+
+     
+        </div>
+
+
+    </div>
+
+
+    <!-- Botón -->
+
+    <div class="row">
+        <div class="col">
+            <button type="submit" class="btn btn-primary float-end">Guardar</button>
+        </div>
+    </div>
+
+
+</form>
+
+<span>Valid</span>
+<pre>{{ miFormulario.valid }}</pre>
+
+<span>Valor</span>
+<pre>{{ miFormulario.value | json }}</pre>
