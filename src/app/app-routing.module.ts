@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SelectoresComponent } from './selectores/pages/selectores/selectores.component';
 
 const routes: Routes = [
 
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule )
+  },
+  {
+    path: 'selectores', 
+    loadChildren: () => import('./selectores/selectores.module').then( m => m.SelectoresModule)
   },
   {
     path: '**',

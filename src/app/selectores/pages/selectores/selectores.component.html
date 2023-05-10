@@ -1,0 +1,96 @@
+<h4>Paises</h4>
+<hr>
+
+<div class="row">
+    <div class="col">
+
+        <form [formGroup]="miFormulario" (ngSubmit)="guardar()">
+
+            <!-- Continente -->
+
+            <div class="row mb-3">
+                <div class="col-sm-3">
+                    <label class="col-form-label">Continente</label>
+                </div>
+                <div class="col-sm-9">
+                    <select class="form-control" 
+                            formControlName="region"
+                            >
+                        <option value="">--Seleccione un continente</option>
+                        <option *ngFor="let region of regiones"
+                             [value]="region | lowercase"  >
+                            {{ region }}
+                        </option>
+                
+                    </select>
+                </div>
+
+            </div>
+
+
+            <!-- Pais -->
+            <div class="row mb-3">
+                <div class="col-sm-3">
+                    <label class="col-form-label">Paises</label>
+                </div>
+                <div class="col-sm-9">
+                    <select class="form-control" formControlName="pais">
+                        <option value="">--Seleccione un pais</option>
+                        <option *ngFor="let pais of paises"
+                            [value]="pais.alpha3Code"
+                            >
+                            {{ pais.name }}
+                        </option>
+                    </select>
+                </div>
+
+            </div>
+
+        
+            <!-- Fronteras  -->
+            <div class="row mb-3">
+                <div class="col-sm-3">
+                    <label class="col-form-label">Fronteras</label>
+                </div>
+                <div class="col-sm-9">
+                    <select class="form-control" formControlName="frontera">
+                        <option>--Seleccione una frontera</option>
+                        <option *ngFor="let frontera of fronteras" 
+                            [value]="frontera" >
+                            {{ frontera }}
+                        </option>
+                    </select>
+                </div>
+
+            </div>
+
+
+            <!-- Spinner -->
+
+            <div *ngIf="cargando"
+                class="spinner-border text-success mt-3" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+
+
+            <!-- Botón -->
+            <div class="row mb-3">
+                <div class="col">
+                    <button type="submit"
+                        class="btn btn-primary float-end">Guardar</button>
+                </div>
+            </div>
+
+
+
+        </form>
+
+    </div>
+    
+</div>
+
+<span>Valido</span>
+<pre>{{ miFormulario.valid }} </pre>
+
+<span>Value</span>
+<pre>{{ miFormulario.value | json }}</pre>
