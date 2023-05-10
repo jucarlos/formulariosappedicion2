@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ValidationService } from '../../../shared/services/validation.service';
+import { EmailvalidatorService } from '../../../shared/services/emailvalidator.service';
 
 @Component({
   selector: 'app-register',
@@ -9,10 +10,30 @@ import { ValidationService } from '../../../shared/services/validation.service';
 })
 export class RegisterComponent implements OnInit {
 
+  get emailMsgError(): string {
+    
+
+    const errors = this.miFormulario.get('email')?.errors;
+
+    if ( errors?.['required']) {
+      return 'El email es obligatorio';
+    } else if ( errors?.['pattern']) {
+      return 'No es un email correcto';
+    } else if ( errors?.['emailUsado']) {
+      return 'El correo ya ha sido utilizado';
+    }
+
+    return '';
+  }
+
+
 
   public miFormulario: FormGroup = this.fb.group({
 
-    nombre: [ '' , [ Validators.required , Validators.minLength(3) ] ],
+    nombre: [ '' , [ 
+      Validators.required , 
+      Validators.minLength(3) 
+    ] ],
 
     identificador: [ '' , [ 
 
@@ -25,9 +46,14 @@ export class RegisterComponent implements OnInit {
     email: [ '' , [ 
       Validators.required, 
       Validators.pattern( this.validationService.emailPattern ) 
-    ]  ],
+    ], [ 
+      this.emailValidator
+    ]    ],
 
-    userName: [ '', [ Validators.required, ] ],
+    userName: [ '', [ 
+      Validators.required,
+      this.validationService.noPuedeSerCarlos
+    ] ],
 
 
     password1: [ '', [ Validators.required, Validators.minLength( 6 ) ]],
@@ -35,12 +61,16 @@ export class RegisterComponent implements OnInit {
     password2: [ '', [ Validators.required ]]
 
 
-  });
+  } , {   
+    validators: 
+    [ this.validationService.camposIguales('password1', 'password2') ]
+  }      );
 
   
 
   constructor(private fb: FormBuilder,
-              private validationService: ValidationService ) { }
+              private validationService: ValidationService,
+              private emailValidator: EmailvalidatorService ) { }
 
 
   ngOnInit(): void {
@@ -48,6 +78,8 @@ export class RegisterComponent implements OnInit {
     this.miFormulario.reset({
       nombre: 'Sonia',
       identificador: '03869206P',
+      email: 'test44@test.com',
+      userName: 'soniaName',
     });
 
   }
@@ -60,10 +92,16 @@ export class RegisterComponent implements OnInit {
     
   }
 
-
-
+ 
 
   guardar() {
+
+    if ( this.miFormulario.invalid ) {
+      this.miFormulario.markAllAsTouched();
+      return;
+    }
+
+    console.log('Guardando');
   
   }
 

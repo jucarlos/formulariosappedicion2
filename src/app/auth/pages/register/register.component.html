@@ -61,7 +61,7 @@
 
                     <small *ngIf="campoNoValido('email')"
                         class="form-text text-danger">
-                        El email es obligarorio y tiene que ser válido.
+                        {{ emailMsgError }}
                     </small>
 
 
@@ -79,7 +79,7 @@
                         formControlName="userName"
                     >
 
-                    <small *ngIf="true"
+                    <small *ngIf="campoNoValido('userName')"
                         class="form-text text-danger">
                         El username es obligatorio y no puede ser carlos
                     </small>
@@ -101,7 +101,7 @@
                         formControlName="password1"
                     >
 
-                    <small *ngIf="true"
+                    <small *ngIf="campoNoValido('password1')"
                         class="form-text text-danger">
                         La password es obligatoria y al menos 6 caracteres.
                     </small>
@@ -120,7 +120,7 @@
                         formControlName="password2"
                     >
 
-                    <small *ngIf="true"
+                    <small *ngIf="campoNoValido('password2')"
                         class="form-text text-danger">
                         Las password tienen que ser iguales.
                     </small>
@@ -153,6 +153,12 @@
 
 <span>Status del Formulario</span>
 <pre>{{ miFormulario.status }}</pre>
+
+<span>Password2</span>
+<pre>{{ miFormulario.get('password2')?.errors | json }}</pre>
+
+<span>userName</span>
+<pre>{{ miFormulario.get('userName')?.errors | json }}</pre>
 
 <span>Email</span>
 <pre>{{ miFormulario.get('email')?.errors | json }}</pre>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup, ValidationErrors } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,50 @@ export class ValidationService {
   constructor() { }
 
 
+  camposIguales( campo1: string, campo2: string ) {
+    
+
+    return ( form: AbstractControl ): ValidationErrors | null => {
+    
+      const pass1 = form.get(campo1)?.value;
+      const pass2 = form.get(campo2)?.value;
+
+      console.table ( pass1, pass2 );
+
+      if ( pass1 === pass2 ) {
+        form.get(campo2)?.setErrors( null );
+        return null;
+      }
+
+      form.get(campo2)?.setErrors( { noIguales: true });
+
+      return {
+        'noIguales': true
+      }
+    
+    
+    }
+
+  
+  
+  }
+
+
+
+
+  noPuedeSerCarlos = ( control: FormControl ): ValidationErrors | null  => {
+  
+
+    if ( control.value?.toLowerCase() === 'carlos') {
+      return {
+        noCarlos: true
+      }
+    }
+
+    return null;
+
+  
+  }
 
 
 
