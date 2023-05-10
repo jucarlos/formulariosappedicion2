@@ -26,11 +26,6 @@ export class ValidationService {
 
 
 
-
-
-
-
-
   validaDni ( control: FormControl ): ValidationErrors | null  {
 
     const dni = control.value?.trim().toUpperCase() || ' ';
